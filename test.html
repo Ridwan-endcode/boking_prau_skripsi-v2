@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+    var PUSHER_APP_KEY = "a4edc754362cd87376e4"
+    var pusher = new Pusher(PUSHER_APP_KEY, {
+      cluster: 'ap1',
+      forceTLS: true
+    });
+
+    // $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+
+
+    var channel = pusher.subscribe('channel-tutofox');
+    channel.bind('event-pusher', function(data) {
+      // alert(JSON.stringify(data));
+      console.log(data.data)
+      const message = data.data
+      var node = document.createElement("LI");
+      var textnode = document.createTextNode(message.user+"=>"+message.message);
+      node.appendChild(textnode);
+      document.getElementById("myList").appendChild(node);
+
+    // var pending = parseInt($('#' + data.id_order).find('.pending').html());
+    var pending = parseInt($('#' + data.data).find('.pending').html());
+
+        if (pending) {
+            $('#' + data.id_order).find('.pending').html(pending + 1);
+        } else {
+            $('#' + data.id_order).append('<span class="pending">1</span>');
+        }
+
+    //   alert(JSON.stringify(data));
+    //         if (my_id == data.id_order) {
+    //             $('#' + data.to_from).click();
+    //         } else if (my_id == data.to_from) {
+    //             if (receiver_id == data.id_order) {
+    //                 // if receiver is selected, reload the selected user ...
+    //                 $('#' + data.id_order).click();
+    //             } else {
+    //                 // if receiver is not seleted, add notification for that user
+    //                 var pending = parseInt($('#' + data.id_order).find('.pending').html());
+
+    //                 if (pending) {
+    //                     $('#' + data.id_order).find('.pending').html(pending + 1);
+    //                 } else {
+    //                     $('#' + data.id_order).append('<span class="pending">1</span>');
+    //                 }
+    //             }
+    //         }
+
+    });
+  </script>
+</head>
+<body>
+  <h1>Pusher Test</h1>
+  <p>
+    Intenta publicar un evento en el canal <code>mi-canal</code>
+    con nombre del evento <code>mi-evento</code>.
+  </p>
+
+  <ul id="myList">
+    <li>Primer mensaje</li>
+    <li class="pending">1</li>
+  </ul>
+
+</body>
