@@ -24,7 +24,7 @@
     <div class="card m-b-20">
         <div class="card-body">
 
-            <h4 class="mt-0 header-title text-center">Selamat datang</h4>
+            <h4 class="mt-0 header-title text-center">Selamat datang Para Pendaki</h4>
             <p class="sub-title text-center">Situs Boking Online Gunung Prau Dataran Tinggi dieng jawa tengah</p>
 
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
