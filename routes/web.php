@@ -73,6 +73,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/administrator/view-order-absendatang/{token}', 'admin\BokingController@absenDatang');
     //Transaksi Out 
     Route::get('/administrator/transaksi-count', 'Controller@mainTransaksi');
+
+    //
+    Route::get('/administrator/view-laporankeuangan', 'admin\LaporanKeuanganController@viewKeuangan');
+
+
  
 });
 

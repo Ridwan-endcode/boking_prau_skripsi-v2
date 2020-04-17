@@ -34,7 +34,11 @@
                     </li>
 
                     <li>
-                    <a href="{{ url('/administrator/view-order-all') }}" class="waves-effect"><i class="icon-paper-pencil "></i><span> Booking </span></a>
+                        <a href="{{ url('/administrator/view-order-all') }}" class="waves-effect"><i class="icon-paper-pencil "></i><span> Booking </span></a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/administrator/view-keuangan-all') }}" class="waves-effect"><i class="icon-paper-pencil "></i><span> Laporan Keuangan </span></a>
                     </li>
 {{-- 
                     <li>
