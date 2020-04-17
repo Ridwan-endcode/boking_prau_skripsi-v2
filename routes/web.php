@@ -71,14 +71,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/administrator/view-order-validasipembayaran/', 'admin\BokingController@TransaksidiTempat');
     Route::get('/administrator/view-order-batalpembayaran/{token}', 'admin\BokingController@batalTransaksi');
     Route::get('/administrator/view-order-absendatang/{token}', 'admin\BokingController@absenDatang');
-    //Transaksi Out
+    //Transaksi Out 
     Route::get('/administrator/transaksi-count', 'Controller@mainTransaksi');
  
 });
 
 //Pages
 Route::get('/', 'front\PagesController@viewPages');
-
+ 
 //Boking Gunung
 Route::get('/booking-pilih-jalurpendakian', 'front\BookingPendakianController@jalurPendakian');
 Route::get('/booking-pilih-jalurpendakian-jadwal/{id}', 'front\BookingPendakianController@jalurPendakianJadwal');

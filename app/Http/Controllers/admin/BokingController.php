@@ -71,12 +71,15 @@ class BokingController extends Controller
         return view('admin.order.admin_view_lihatpendaki')->with(compact('orders','pendakis','pendakijumlah'));
 
     }
-
+ 
     public function ValidasiPembayaranPendaki($token){
+
+        $orders = Order::where(['token_pendakian'=>$token])->first();
+
          // $data = $request->all();
          $id_user = auth()->user()->id;
-         Order::where(['token_pendakian' => $token])->update([
-            'status_bayar' => $id_user]);
+         Order::where(['token_pendakian' => $token])->update(['status_bayar' => $id_user]);
+         Pendaki::where(['id_order' => $orders->id])->update(['status' => 1]);
             return redirect()->back()->with('flash_message_success', '|| Validasi Pedakian Telah di lakukan');
     }
 
@@ -105,14 +108,13 @@ class BokingController extends Controller
                     //Resize
                     Image::make($image_tmp)->resize(650, 1063)->save($large_image_path);
                     $transaksi->foto_bukti = $filename;
-
             }
         }
 
         $transaksi->save();
         $user_id = auth()->user()->id;
         Order::where(['id' => $transaksi->id_order])->update(['id_transaksi' => $transaksi->id , 'status_bayar' => $user_id ]);
-
+        Pendaki::where(['id_order' => $transaksi->id_order])->update(['status' => 1]);
     return redirect()->back()->with('flash_message_success', 'Pembayaran di tampat ');
 
     }
@@ -125,6 +127,7 @@ class BokingController extends Controller
 
         // $id_user = auth()->user()->id;
         Order::where(['id' => $orders->id])->update(['status_bayar' => '0', 'id_transaksi' => '0']);
+        Pendaki::where(['id_order' => $orders->id])->update(['status' => '0']);
            return redirect()->back()->with('flash_message_success', '|| Pembatalan Pembayaran');
 
     }

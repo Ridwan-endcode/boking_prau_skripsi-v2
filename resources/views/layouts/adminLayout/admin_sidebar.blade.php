@@ -8,7 +8,7 @@
                 <ul class="metismenu" id="side-menu">
                     <li class="menu-title">Menu</li>
                     <li>
-                        <a href="index.html" class="waves-effect">
+                        <a href="{{ url('administrator/dashboard') }}" class="waves-effect">
                             <i class="icon-accelerator"></i><span> Dashboard </span>
                         </a>
                     </li>
@@ -36,7 +36,7 @@
                     <li>
                     <a href="{{ url('/administrator/view-order-all') }}" class="waves-effect"><i class="icon-paper-pencil "></i><span> Booking </span></a>
                     </li>
-
+{{-- 
                     <li>
                         <a href="javascript:void(0);" class="waves-effect"><i class="icon-paper-sheet"></i><span> Pages <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                         <ul class="submenu">
@@ -54,11 +54,11 @@
                             <li><a href="pages-404.html">Error 404</a></li>
                             <li><a href="pages-500.html">Error 500</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
-                    <li class="menu-title">Components</li>
+                    <li class="menu-title">Content</li>
 
-                    <li>
+                    {{-- <li>
                         <a href="javascript:void(0);" class="waves-effect"><i class="icon-pencil-ruler"></i> <span> UI Elements <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span> </a>
                         <ul class="submenu">
                             <li><a href="ui-alerts.html">Alerts</a></li>
@@ -159,7 +159,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                 </ul>
 

@@ -42,7 +42,7 @@
 
 </head>
 
-<body>
+<body style="background: radial-gradient(#cce6ff, #FFF);" >
 
     @include('layouts.frontLayout.front_heder')
 

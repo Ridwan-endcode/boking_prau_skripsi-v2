@@ -27,14 +27,15 @@ class BookingPendakianController extends Controller
     public function jalurPendakianJadwal($id = null){
              // echo $slug; die;
         $jalur_pendakian = Jalur_pendakian::where(['id'=>$id])->first();
-
+            
+            $tanggal = date_default_timezone_set('Asia/Jakarta');
         if ($id !== null) {
             # code... 
             $jalur_pendakianCont = Jalur_pendakian::where(['id' => $id])->count();
             if ($jalur_pendakianCont == 0) {
                 abort(404);
             }
-            $jadwals = Jadwal::where(['id_jalur'=>$jalur_pendakian->id])->orderBy('tgl_jadwal','asc')->paginate(30);
+            $jadwals = Jadwal::where(['id_jalur' => $jalur_pendakian->id])->orderBy('tgl_jadwal','asc')->paginate(30);
         }else{
             $jadwals = Jadwal::orderBy('id', 'desc')->get();
         }

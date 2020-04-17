@@ -69,10 +69,10 @@ use App\Pendaki;
                                       
                                         <dl class="row mb-0">
                                             <dt class="col-sm-5">Jadwal Pendakian</dt>
-                                            <dd class="col-sm-7">: {{ $orders->jadwals->tgl_jadwal }}</dd>
+                                            <dd class="col-sm-7">: {{ date('j M, Y', strtotime($orders->jadwals->tgl_jadwal)) }}</dd>
 
                                             <dt class="col-sm-5">Tanggal Turun Pendakian</dt>
-                                            <dd class="col-sm-7">: {{ $orders->tgl_turun }}</dd>
+                                            <dd class="col-sm-7">: {{ date('j M, Y', strtotime($orders->tgl_turun)) }} </dd>
 
                                             <dt class="col-sm-5">Jalur Naik Pendakian</dt>
                                             <dd class="col-sm-7">: {{ $orders->jalur_pendakis->nama_jalur }}</dd>
@@ -88,20 +88,7 @@ use App\Pendaki;
                                         <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
                                     </blockquote> --}}
         
-                                    <div class="col-xl-6">
-                                        <div class="card m-b-30 text-white bg-info">
-                                            <div class="card-body">
-                                                <blockquote class="card-bodyquote mb-0">
-                                                    <p>
-                                                      Tiket Pendakian Per hari = @currency($orders->jadwals->harga)
-                                                    </p>
-                                                    <footer class="blockquote-footer text-white font-12">
-                                                        Someone famous in <cite title="Source Title">Source Title</cite>
-                                                    </footer>
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
 
                                 </div>
                                 <div class="col-lg-6">
@@ -530,7 +517,7 @@ use App\Pendaki;
                                         
                                         <p>
                                           Pendakian anda melalui jalur <strong style="color :blue">{{ $orders->jalur_pendakis->nama_jalur }}</strong>  dengan jumlah anggota  <strong style="color :blue">{{ $pendakijumlah->count() }} Orang </strong>
-                                          anda Mulai pendakian pada tanggal  <strong style="color :blue"> {{ $orders->jadwals->tgl_jadwal }} </strong> dan Turun kembali pada tanggal   <strong style="color :blue"> {{ $orders->tgl_turun }} </strong>
+                                          anda Mulai pendakian pada tanggal  <strong style="color :blue"> {{ date('j M, Y', strtotime($orders->jadwals->tgl_jadwal)) }}</strong> dan Turun kembali pada tanggal   <strong style="color :blue"> {{ date('j M, Y', strtotime($orders->tgl_turun)) }} </strong>
 
                                         </p>
                                       </div>
