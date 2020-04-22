@@ -13,6 +13,11 @@ class Order extends Model
       return $this->belongsTo('App\Pendaki', 'id_pendaki');
     }
 
+    public function pendakisjmlh()
+    {
+      return $this->hasMany('App\Pendaki', 'id_order');
+    }
+
     public function jadwals()
     {
       return $this->belongsTo('App\Jadwal', 'id_jadwal');

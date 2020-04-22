@@ -11,17 +11,26 @@ use App\Transaksi;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Input;
+use DataTables;
 
 class BokingController extends Controller
 {
-    public function viewAllOrder(){
-        // $orders = Order::cursor();
 
-        $orders = Order::cursor()->filter(function ($id) {
-            return $id->id;
-        });
+    public function __construct()
+{ 
+    ini_set('max_execution_time', 300);
+}
+
+    public function viewAllOrder(Request $request){
+        $orders = Order::orderBy('id', 'desc')->paginate(15);
+        // $orders = Order::all()->paginate(30);
+      
+        // $orders = Order::cursor()->filter(function ($id) {
+        //     return $id->id;
+        // });
         
         return view('admin.order.admin-view-order-all')->with(compact('orders'));
+        // return view('admin.order.admin-view-order-all');
 
     }
 

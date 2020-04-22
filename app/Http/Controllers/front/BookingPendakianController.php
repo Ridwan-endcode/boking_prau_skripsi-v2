@@ -27,36 +27,57 @@ class BookingPendakianController extends Controller
     public function jalurPendakianJadwal($id = null){
              // echo $slug; die;
         $jalur_pendakian = Jalur_pendakian::where(['id'=>$id])->first();
-            
-            $tanggal = date_default_timezone_set('Asia/Jakarta');
+        // date_default_timezone_set('Asia/Jakarta');
+        
+
+        // echo "<pre>";
+        // print_r($jalur_pendakian);
+        // die;
+
         if ($id !== null) {
             # code... 
             $jalur_pendakianCont = Jalur_pendakian::where(['id' => $id])->count();
             if ($jalur_pendakianCont == 0) {
                 abort(404);
             }
-            $jadwals = Jadwal::where(['id_jalur' => $jalur_pendakian->id])->orderBy('tgl_jadwal','asc')->paginate(30);
+            $tanggalawl = date('yy-m-d');
+            $tanggaakir = date('2020-06-02');
+            //   echo "<pre>";
+            //  print_r($tanggalawl);
+            //  die;
+            // $relateProduct = Product::where('id', '!=', $id)->where(['category_id' => $productDetails->category_id])->get();
+            $jadwals = Jadwal::where('created_at', '>=', $tanggalawl)->where(['id_jalur' => $jalur_pendakian->id])->orderBy('tgl_jadwal','asc')->paginate(30);
+
+
         }else{
-            $jadwals = Jadwal::orderBy('id', 'desc')->get();
+            $jadwals = Jadwal::orderBy('id', 'desc')->get();;
         }
+
+       
+
         // $pendakis = Pendaki::where(['id_jadwal'=>$jadwals]);
 
+      
+
+        // $pendakis = Order::where(['id_jadwal' => $jadwal->id])->get();
+
+        // foreach ($pendakis as $pendaki) {
+        //     $JumlahPendaki = Pendaki::where(['id_order' => $pendaki->pendakis->id_order])->count();
+        //   } 
 
         
         // Start Dropdown Add Product
         // $categories = Category::where(['parent_id' => 0])->get();
         // $categories_dropdown = "<option value='' selected disabled>Select</option>";
         // $pendakis = "";
-
-        foreach ($jadwals as $jadwal) {
-            $pendakis = Pendaki::where(['id_jadwal' => $jadwal->id])->get();
-            foreach ($pendakis as $jmlah) {
-                $jmlah = $jmlah->count();
-            }
-        }
-        // echo "<pre>";
-        // print_r($jmlah);
-        // die;
+        // ini_set('max_execution_time', 60);
+        // foreach ($jadwals as $jadwal) {
+        //     $pendakis = Pendaki::where(['id_jadwal' => $jadwal->id])->get();
+        //     foreach ($pendakis as $jmlah) {
+        //         $jmlah = $jmlah->count();
+        //     }
+        // }
+       
 
 
    
@@ -247,7 +268,7 @@ class BookingPendakianController extends Controller
     }
 
     public function HapusOrderAnggota($id = null){
-
+        date_default_timezone_set('Asia/Jakarta');
         
         $orders = Pendaki::find($id);
         // $productDetail = Pendaki::where(['id' => $id])->first();
@@ -259,6 +280,7 @@ class BookingPendakianController extends Controller
         // echo "<pre>";
         // print_r($totalharga);
         // die;
+
         Order::where(['id' => $id_o])->update(['harga' => $totalharga]);
         return redirect()->back()->with('flash_message_success', 'Angota Kelompok Pendakian Berhasil di Hapus');
     }

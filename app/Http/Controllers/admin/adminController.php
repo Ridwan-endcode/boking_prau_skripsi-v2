@@ -56,11 +56,18 @@ class adminController extends Controller
                 return redirect()->back()->with('flash_message_error','Email Telah Terdaftar - Coba Dengan Email Lain');
             } 
             else{
+
+                if (empty($data['status'])) {
+                    $status = 0;
+                } else {
+                    $status = 1;
+                }
+
                 $user = new User;
                 $user->name = $data['name'];
                 $user->email = $data['email'];
                 $user->password = bcrypt($data['password']);
-                $user->status = $data['status'];
+                $user->status = $status;
                 date_default_timezone_set('Asia/Jakarta');
                 $user->created_at = date("Y-m-d h:i:sa");
                 $user->updated_at = date("Y-m-d h:i:sa");
@@ -92,7 +99,7 @@ class adminController extends Controller
                 //     }
 
                 $user->save();
-                return redirect()->back()->with('flash_message_success', 'User Admin Berhasil di Tambah');
+                return redirect('/administrator/view-admin')->with('flash_message_success', 'User Admin Berhasil di Tambah');
             }
 
         }
@@ -132,6 +139,11 @@ class adminController extends Controller
                 $filename = $data['current_image'];
             }
             //Image Update end
+            if (empty($data['status'])) {
+                $status = 0;
+            } else {
+                $status = 1;
+            }
 
              date_default_timezone_set('Asia/Jakarta');
                 // $user->created_at = date("Y-m-d h:i:sa");
@@ -139,7 +151,7 @@ class adminController extends Controller
 
 
             User::where(['id' => $user_id])->update([
-                'name' => $data['name'], 'email' => $data['email'], 'status' => $data['status'],'email' => $data['email'], 'image' => $filename
+                'name' => $data['name'], 'email' => $data['email'], 'status' => $status,'email' => $data['email'], 'image' => $filename
             ]);
             return redirect('/administrator/view-admin')->with('flash_message_success', 'Data Admin Berhasil di Edit');
         }

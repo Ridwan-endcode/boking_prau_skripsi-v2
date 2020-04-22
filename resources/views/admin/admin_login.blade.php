@@ -1,101 +1,126 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Admin Boking Prau</title>
-        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
-        <meta content="Themesdesign" name="author" />
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('backend/css/adminlte.min.css') }}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
 
-        <link href="{{ asset('backend/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('backend/css/metismenu.min.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('backend/css/icons.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet" type="text/css">
+    
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
+  </div>
 
-    </head>
+ 
 
-    <body>
+  @if (Session::has('flash_message_success'))
+  <div class="col-md-12">
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">Success</h3>
 
-        <!-- Begin page -->
-        <div class="accountbg"></div>
-    
-        <div class="wrapper-page">
-
-
-                <div class="card-body">
-                        <div class="">
-                             @if (Session::has('flash_message_success'))
-                            <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <strong>Selamat Berhasil</strong> {!! session('flash_message_success') !!}
-                            </div>
-                            @endif
-                            @if (Session::has('flash_message_error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <strong>Ada Kesalahan !!   </strong>{!! session('flash_message_error') !!}
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-
-                <div class="card card-pages shadow-none">
-                    <div class="card-body">
-                        <div class="text-center m-t-0 m-b-15">
-                                <a href="index.html" class="logo logo-admin"><img src="assets/images/logo-light.png" alt="" height="24"></a>
-                        </div>
-                        <h5 class="font-18 text-center">SISTEM INFORMASI BOKING WISATA PENDAKIAN MELALUI ONLINE DIKAWASAN GUNUNG PRAU  DATARAN TINGGI DIENG JAWA TENGAH</h5>
-                        <hr>
-                        <h8 class="font-18 text-center">login untuk melanjutkan Admin Gunung Prau</h5>
-    
-                        <form class="form-horizontal m-t-30" method="POST" action="{{ url('administrator') }}"> @csrf
-    
-                            <div class="form-group">
-                                <div class="col-12">
-                                        <label>Email</label>
-                                    <input class="form-control" name="email" type="email" required placeholder="email">
-                                </div>
-                            </div>
-    
-                            <div class="form-group">
-                                <div class="col-12">
-                                        <label>Password</label>
-                                    <input class="form-control" name="password" type="password" required="" placeholder="Password">
-                                </div>
-                            </div>
-    
-                        
-    
-                            <div class="form-group text-center m-t-20">
-                                <div class="col-12">
-                                    <button class="btn btn-primary btn-block btn-lg waves-effect waves-light" type="submit">Log In</button>
-                                </div>
-                            </div>
-    
-                        </form>
-                    </div>
-    
-                </div>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+              </button>
             </div>
-        <!-- END wrapper -->
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+                {!! session('flash_message_success') !!}
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
 
-        <!-- jQuery  -->
-        <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('backend/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('backend/js/metismenu.min.js') }}"></script>
-        <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
-        <script src="{{ asset('backend/js/waves.min.js') }}"></script>
+  @endif
+  @if (Session::has('flash_message_error'))
+  <div class="col-md-12">
+        <div class="card card-danger">
+          <div class="card-header">
+            <h3 class="card-title">Ada Kesalahan</h3>
 
-        <!-- App js -->
-        <script src="{{ asset('backend/js/app.js') }}"></script>
-        
-    </body>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+                {!! session('flash_message_error') !!}
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+  @endif
 
+
+  
+
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in Untuk Mengelola Administrasi</p>
+
+      <form method="POST" action="{{ url('administrator') }}"> @csrf
+        <div class="input-group mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password"  name="password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+         
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block "><i class="fas fa-sign-in-alt"></i> Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+   
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('backend/js/adminlte.min.js') }}"></script>
+
+</body>
 </html>

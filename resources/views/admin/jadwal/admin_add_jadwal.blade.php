@@ -2,175 +2,269 @@
 
 @extends('layouts.adminLayout.admin_desing')
 
+@section('app_css')
+<link rel="stylesheet" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+<!-- Bootstrap4 Duallistbox -->
+<link rel="stylesheet" href="{{ asset('backend/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+ 
+@endsection
 
 @section('content')
 
-   <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container-fluid">
-                        <div class="page-title-box">
-                            <div class="row align-items-center">
-                                <div class="col-sm-6">
-                                    <h4 class="page-title">Tambah Jadwal pendakian <br> Sistem Boking Gunung Prau</h4>
-                                </div>
-                                <div class="col-sm-6">
-                                    <ol class="breadcrumb float-right">
-                                        <li class="breadcrumb-item"><a href="{{ url('/administrator/dashboard') }}">dashboard</a></li>
-                                        <li class="breadcrumb-item active">Tambah Jadwal</li>
-                                    </ol>
-                                </div>
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <!-- end page-title -->
+   
 
-                        <div class="card-body">
-                            <div class="">
-                                 @if (Session::has('flash_message_success'))
-                                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <strong>Selamat Berhasil</strong> {!! session('flash_message_success') !!}
-                                </div>
-                                @endif
-                                @if (Session::has('flash_message_error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <strong>Ada Kesalahan !!   </strong>{!! session('flash_message_error') !!}
-                                </div>
-                                @endif
-                            </div>
-                        </div>
-    
-                        <div class="row">
-    
-                        
-                                <div class="col-lg-12">
-                                        <div class="card m-b-30">
-                                            <div class="card-body">
-                
-                                            
-                                                <form class="" method="post" action="{{ url('/administrator/add-jadwal') }}" enctype="multipart/form-data" > @csrf
-                                                    
-                                                    
 
-                                                    <div class="form-group">
-                                                        <label>Pilih Jalur Pendakian</label>
-                                                        <div>
-                                                            <select class="form-control" name="id_jalur" required>
-                                                                <option value="0">Select</option>
-                                                                @foreach ($jalur_pendakians as $jalur_pendakian)
-                                                                    <option value="{{ $jalur_pendakian->id }}">{{ $jalur_pendakian->nama_jalur }}</option>
-                                                                @endforeach
-                                                                
-                                                                {{-- <option value="2">Dieng Kulon</option> --}}
-                                                            </select>
-                                                        </div>
-                                                    </div>
+<div class="content-wrapper">
 
-                                                    <div class="form-group">
-                                                        <label>Status Buka/Tutup Jadwal Pendakian</label>
-                                                        <div>
-                                                            <select class="form-control" name="status" required>
-                                                                <option value="0">Select</option>
-                                                                <option value="1">Jadwal Di buka</option>
-                                                                <option value="0">Jawal Di tutup </option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Form Tambah data Jadwal Pendakian </h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ url('/administrator/dashboard') }}">Home</a></li>
+              <li class="breadcrumb-item active">Tambah Data Jadwal</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
 
-                                                    <div class="form-group">
-                                                        <label>Input Tanggal Jadwal Pendakian</label>
-                                                        <div>
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control" name="tgl_jadwal" placeholder="mm/dd/yyyy" id="datepicker-autoclose" required>
-                                                                <div class="input-group-append bg-custom b-0"><span class="input-group-text"><i class="mdi mdi-calendar"></i></span></div>
-                                                            </div><!-- input-group -->
-                                                        </div>
-                                                    </div>
+    
+  @if (Session::has('flash_message_success'))
+  <div class="col-md-12">
+        <div class="card card-success">
+          <div class="card-header">
+            <h3 class="card-title">Success</h3>
 
-                                                    <div class="form-group row">
-                                                        <label for="example-number-input" class="col-sm-2 col-form-label">Kuota Pendakian</label>
-                                                        <div class="col-sm-10">
-                                                            <input class="form-control" type="number" name="kuota"  id="example-number-input">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Harga Tiket</label>
-                                                        <input type="text" placeholder="" name="harga"  class="form-control">
-                                                    </div>
-
-                                                
-                
-                                                    {{-- <input type="hidden" name="created_at" value="{{ date('d-m-Y H:i:s') }}"> --}}
-                                                    
-                
-                                                    <div class="form-group">
-                                                        <div>
-                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">
-                                                                Submit
-                                                            </button>
-                                                            <button type="reset" class="btn btn-secondary waves-effect m-l-5">
-                                                                Cancel
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                
-                                            </div>
-                                        </div>
-                                    </div> <!-- end col -->
-                
-    
-    
-    
-                        </div>
-    
-    
-                        
-    
-                       
-    
-                    </div>
-                    <!-- container-fluid -->
-    
-                </div>
-                <!-- content -->
-    
-    
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+              </button>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Right content here -->
-            <!-- ============================================================== -->
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+                {!! session('flash_message_success') !!}
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+
+  @endif
+  @if (Session::has('flash_message_error'))
+  <div class="col-md-12">
+        <div class="card card-danger">
+          <div class="card-header">
+            <h3 class="card-title">Ada Kesalahan</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+                {!! session('flash_message_error') !!}
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+  @endif
 
 
+  
+  <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+  
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Tambah Data Jadwal</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                <form role="form" id="quickForm" method="post" action="{{ url('/administrator/add-jadwal') }}" enctype="multipart/form-data"  > @csrf
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="id_jalur">Pilih Jalur Pendakian</label>
+                            <select class="form-control select2bs4" name="id_jalur" id="id_jalur" required style="width: 100%;">
+                              <option>Pilih Jalur Pendakian</option>
+                              @foreach ($jalur_pendakians as $jalur_pendakian)
+                              <option value="{{ $jalur_pendakian->id }}">{{ $jalur_pendakian->nama_jalur }}</option>
+                                @endforeach
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            {{-- <input type="checkbox" class="form-check-input" name="status"> --}}
+                            <input type="checkbox" name="status" id="status" value="1"  >
+                            <label for="exampleCheck1">Status Buka Tutup Jalur Pendakian</label>
+                          </div>
+                          
+                        <div class="form-group">
+                          <label for="tgl_jadwal">Pilih Tanggal</label>
+                          <input type="text" class="form-control" id="datepicker" name="tgl_jadwal" id="tgl_jadwal" autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="kuota">Kuota Pendakian</label>
+                          <input type="text" class="form-control" id="kuota" name="kuota" >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="harga">Harga Tiket</label>
+                          <input type="text" class="form-control" id="harga" name="harga" >
+                        </div>
+
+                     
+                      
+                    </div>
+                    <!-- /.card-body -->
+    
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.card -->
+    
+             
+    
+    
+              </div>
+              <!--/.col (left) -->
+  
+        </div>
+      </div>
+    </section>
+
+
+
+</div>
+
+
+@section('app_js')
+<!-- jquery-validation -->
+{{-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> --}}
+<script src="{{ asset('backend/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/jquery-validation/additional-methods.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{ asset('backend/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+<!-- InputMask -->
+<script src="{{ asset('backend/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
+<!-- date-range-picker -->
+<script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- bootstrap color picker -->
+<script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Bootstrap Switch -->
+<script src="{{ asset('backend/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+        minDate: 0,
+        dateFormat: 'yy-mm-dd',
+        });
+  } );
+  </script>
+<!-- Page script -->
+<script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+  
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        required: true
+      })
+  
+      $( function() {
+        $( "#datepicker" ).datepicker();
+      });
+
+      
+    })
+  </script>
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $.validator.setDefaults({
+      submitHandler: function () {
+        return true;
+      }
+    });
+    $('#quickForm').validate({
+      rules: {
+        id_jalur: {
+          required: true,
+        },
+        tgl_jadwal: {
+          required: true,
+        },
+        kuota: {
+          required: true,
+          number: true
+        },
+        harga : {
+          required: true,
+          number: true
+        },
+      
+      },
+      messages: {
+        id_jalur: {
+          required: "Tolong Isi Jalur Pendakian"
+        },
+        tgl_jadwal: {
+          required: "Jadwal Ini Harus di isi"
+        },
+        kuota: {
+          required: "Kouta Harus di Isi",
+          number: "harus Berformati Nomer"
+        },
+        harga: {
+          required: "Kouta Harus di Isi",
+          number: "harus Berformati Nomer"
+        },
+        
+      },
+      errorElement: 'span',
+      errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+      },
+      highlight: function (element, errorClass, validClass) {
+        $(element).addClass('is-invalid');
+      },
+      unhighlight: function (element, errorClass, validClass) {
+        $(element).removeClass('is-invalid');
+      }
+    });
+  });
+  </script>
 
 @endsection
-@section('app_js')
-<!-- Parsley js -->
-        <script src="{{ asset('/plugins/parsleyjs/parsley.min.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('form').parsley();
-    });
-</script>
 
-<!-- Plugins js -->
-<script src="{{ asset('/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-<script src="{{ asset('/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-<script src="{{ asset('/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-<script src="{{ asset('/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js') }}"></script> 
-<script src="{{ asset('/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js') }}"></script>
-
-
-<!-- Plugins Init js -->
-<script src="{{ asset('backend/pages/form-advanced.js') }}"></script>
 @endsection

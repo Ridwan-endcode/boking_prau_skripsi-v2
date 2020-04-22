@@ -44,11 +44,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', 'admin\adminController@logout');\
     
     //Kelola User
-    Route::match(['get', 'post'], '/administrator/add-user', 'admin\adminController@AddUser');
     Route::match(['get', 'post'], '/administrator/edit-user/{id}', 'admin\adminController@EditUser');
     Route::get('administrator/view-admin', 'admin\adminController@ViewUser');
     Route::get('administrator/hapus-admin/{id}', 'admin\adminController@HapusUser');  
     Route::get('administrator/hapus-foto-admin/{id}', 'admin\adminController@HapusUserImage');  
+    Route::match(['get', 'post'], '/administrator/add-user', 'admin\adminController@AddUser');
 
     //Kelola Jadwal
     Route::match(['get', 'post'], '/administrator/add-jadwal', 'admin\JadwalController@AddJadwal');
@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/administrator/hapus-image-jalurpendakian/{id}', 'admin\JalurPendakianController@HapusJalurImage');  
 
     //Order Pendakian
-    Route::get('/administrator/view-order-all', 'admin\BokingController@viewAllOrder');
+    Route::get('/administrator/view-order-all', 'admin\BokingController@viewAllOrder')->name('view-order-all.data.list');
     Route::get('/administrator/view-order-jadwal/{id}', 'admin\BokingController@ViewOrderJadwal');
     Route::get('/administrator/view-order-lihatpendaki/{token}', 'admin\BokingController@ViewPendaki');
     Route::get('/administrator/view-order-validasipembayaran/{token}', 'admin\BokingController@ValidasiPembayaranPendaki');

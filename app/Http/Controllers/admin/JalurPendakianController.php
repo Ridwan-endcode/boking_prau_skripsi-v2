@@ -19,9 +19,15 @@ class JalurPendakianController extends Controller
             $data = $request->all();
             date_default_timezone_set('Asia/Jakarta');
 
+            if (empty($data['status'])) {
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+
             $add_jalur_pendakian = new Jalur_pendakian;
             $add_jalur_pendakian->nama_jalur = $data['nama_jalur'];
-            $add_jalur_pendakian->status = $data['status'];
+            $add_jalur_pendakian->status = $status;
             $add_jalur_pendakian->alamat_jalur = $data['alamat_jalur'];
             $add_jalur_pendakian->create_id = auth()->user()->id;
             $add_jalur_pendakian->created_at = date("Y-m-d h:i:sa");
@@ -80,10 +86,15 @@ class JalurPendakianController extends Controller
              date_default_timezone_set('Asia/Jakarta');
                 // $user->created_at = date("Y-m-d h:i:sa");
                 // $user->updated_at = date("Y-m-d h:i:sa");
+                if (empty($data['status'])) {
+                    $status = 0;
+                } else {
+                    $status = 1;
+                }
 
 
 						Jalur_pendakian::where(['id' => $id])->update([
-                'nama_jalur' => $data['nama_jalur'], 'alamat_jalur' => $data['alamat_jalur'], 'status' => $data['status'], 'image_peta_jalur' => $filename
+                'nama_jalur' => $data['nama_jalur'], 'alamat_jalur' => $data['alamat_jalur'], 'status' => $status, 'image_peta_jalur' => $filename
             ]);
             return redirect('/administrator/view-jalurpendakian')->with('flash_message_success', 'Data Jalur Pendakian Berhasil di Edit');
 				}

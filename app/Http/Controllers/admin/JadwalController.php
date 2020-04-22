@@ -24,9 +24,15 @@ class JadwalController extends Controller
 
             date_default_timezone_set('Asia/Jakarta');
 
+            if (empty($data['status'])) {
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+
             $jadwal_add = new Jadwal;
             $jadwal_add->tgl_jadwal = $data['tgl_jadwal'];
-            $jadwal_add->status = $data['status']; 
+            $jadwal_add->status = $status; 
             $jadwal_add->kuota = $data['kuota'];
             $jadwal_add->id_jalur = $data['id_jalur'];
             $jadwal_add->harga = $data['harga'];
@@ -66,9 +72,14 @@ class JadwalController extends Controller
                 // $user->created_at = date("Y-m-d h:i:sa");
                 // $user->updated_at = date("Y-m-d h:i:sa");
 
+                if (empty($data['status'])) {
+                    $status = 0;
+                } else {
+                    $status = 1;
+                }
 
             Jadwal::where(['id' => $id])->update([
-                'status' => $data['status'], 'harga' => $data['harga'], 'kuota' => $data['kuota']
+                'status' => $status, 'harga' => $data['harga'], 'kuota' => $data['kuota']
             ]);
             return redirect('/administrator/view-jadwal')->with('flash_message_success', 'Data Jadwal Berhasil di Edit');
         }
@@ -96,8 +107,10 @@ class JadwalController extends Controller
             $jadwals = Jadwal::orderBy('id', 'desc')->get();
         }
 
+       
+
         foreach ($jadwals as $jadwal) {
-            $pendakis = Pendaki::where(['id_jadwal' => $jadwal->id])->get();
+            $pendakis = Pendaki::where(['id_jadwal' => $jadwal->id])->where(['status' => 1])->get();
             foreach ($pendakis as $jmlah) {
                 $jmlah = $jmlah->count();
             }
