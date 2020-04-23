@@ -36,7 +36,7 @@
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
  
-
+<script src="https://js.pusher.com/5.1/pusher.min.js"></script>
     @yield('app_css')
 
     
@@ -98,6 +98,10 @@
     <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('backend/js/demo.js') }}"></script>
+
+        <!-- App js -->
+        <script src="{{ asset('js/app.js') }}" ></script>   
+        {{-- <script src="{{ asset('backend/js/app.js') }}"></script> --}}
     @yield('app_js')
 
 </body>

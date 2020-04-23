@@ -245,7 +245,7 @@
           number: "harus Berformati Nomer"
         },
         harga: {
-          required: "Kouta Harus di Isi",
+          required: "Harga Harus di Isi",
           number: "harus Berformati Nomer"
         },
         

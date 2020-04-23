@@ -6,44 +6,50 @@
                         </a>
                 </li> -->
 
-                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="mdi mdi-bell-outline noti-icon"></i>
 
-                    <span class="badge badge-pill badge-danger noti-icon-badge">{{transaksi.length + message.length }}</span>
-                    
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-10">
-                        <!-- item-->
-                        <h6 class="dropdown-item-text">
-                                Notifications
-                            </h6>
-                        <div class="slimscroll notification-item-list" style="overflow: hidden;width: auto;height: 400px;">
-                            <!-- item-->
+ <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <i class="far fa-comments"></i>
+              <span class="badge badge-danger navbar-badge">{{transaksi.length + message.length }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div style="padding: 10px; overflow: scroll; height: 300px;">
 
-                            
-                            <!-- <message-component></message-component> -->
-                      
-                          <a v-for="msg in message" v-bind:href="'/administrator/view-order-lihatpendaki/'+msg.token" class="dropdown-item notify-item active">
-                                                          <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                                                          <p class="notify-details"><b> Nama Pengirim {{msg.id_order}}</b><span class="text-muted">
-                                                            Bank: {{msg.bank}} || {{ msg.token }}
-                                                          </span></p>
-                          </a>
+              <a v-for="msg in message" v-bind:href="'/administrator/view-order-lihatpendaki/'+msg.token"  class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Nama Pengirim {{msg.id_order}}
+                      <span class="float-right text-sm text-success"><i class="fas fa-search-dollar"></i></span>
+                    </h3>
+                    <p class="text-sm">Bank: {{msg.bank}} || Token {{ msg.token }}</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
 
-                      
-                                <a v-for="trens in transaksi" v-bind:href="'/administrator/view-order-lihatpendaki/'+trens.token_pendakian" class="dropdown-item notify-item active">
-                                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                                    <p class="notify-details"><b> Nama Pengirim {{ trens.nama_pengirim }}</b><span class="text-muted">
-                                      Token Pendakian {{ trens.bank }} {{ trens.token_pendakian }}</span></p>
-                                </a>
-                        </div>
-                        <!-- All-->
-                        <a href="javascript:void(0);" class="dropdown-item text-center notify-all text-primary">
-                                View all <i class="fi-arrow-right"></i>
-                            </a>
-                    </div>
-                </li>
+               <a v-for="trens in transaksi" v-bind:href="'/administrator/view-order-lihatpendaki/'+trens.token_pendakian"  class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Nama Pengirim {{ trens.nama_pengirim }}
+                      <span class="float-right text-sm text-success"><i class="fas fa-search-dollar"></i></span>
+                    </h3>
+                    <p class="text-sm">Bank  {{ trens.bank }} || Token {{ trens.token_pendakian }}</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            </div>
+            </div>
+          </li>
+
+
     
     <!-- <h6 style="color: #fff">
       {{message.length}} |||

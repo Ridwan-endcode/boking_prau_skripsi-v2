@@ -160,6 +160,7 @@
                     <h7>Pendaki Talah Melakukan Pembayaran</h7>
                     <p> Jumlah yang Harus di bayar : @currency($orders->harga) </p>
                     <p>Telah Melakukan Pembayaran pada : <br> {{ date('j M, Y h:i:sa', strtotime($orders->transak->created_at)) }}</p>
+                    <p>Telah Melakukan Pembayaran pada : <br> {{$orders->transak->created_at->diffForHumans()}}</p>
                     
                   </div>
                   <div class="icon">

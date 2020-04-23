@@ -1970,6 +1970,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   // props: ['message1'],
   data: function data() {
@@ -19627,163 +19633,141 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "li",
-    {
-      staticClass:
-        "dropdown notification-list list-inline-item d-none d-md-inline-block"
-    },
-    [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link dropdown-toggle arrow-none waves-effect",
-          attrs: {
-            "data-toggle": "dropdown",
-            href: "#",
-            role: "button",
-            "aria-haspopup": "false",
-            "aria-expanded": "false"
-          }
-        },
-        [
-          _c("i", { staticClass: "mdi mdi-bell-outline noti-icon" }),
-          _vm._v(" "),
-          _c(
-            "span",
-            { staticClass: "badge badge-pill badge-danger noti-icon-badge" },
-            [_vm._v(_vm._s(_vm.transaksi.length + _vm.message.length))]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-lg px-10"
-        },
-        [
-          _c("h6", { staticClass: "dropdown-item-text" }, [
-            _vm._v(
-              "\n                            Notifications\n                        "
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "slimscroll notification-item-list",
-              staticStyle: {
-                overflow: "hidden",
-                width: "auto",
-                height: "400px"
-              }
-            },
-            [
-              _vm._l(_vm.message, function(msg) {
-                return _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item notify-item active",
-                    attrs: {
-                      href:
-                        "/administrator/view-order-lihatpendaki/" + msg.token
-                    }
-                  },
-                  [
-                    _vm._m(0, true),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "notify-details" }, [
-                      _c("b", [
-                        _vm._v(" Nama Pengirim " + _vm._s(msg.id_order))
-                      ]),
-                      _c("span", { staticClass: "text-muted" }, [
+  return _c("li", { staticClass: "nav-item dropdown" }, [
+    _c(
+      "a",
+      {
+        staticClass: "nav-link",
+        attrs: { "data-toggle": "dropdown", href: "#" }
+      },
+      [
+        _c("i", { staticClass: "far fa-comments" }),
+        _vm._v(" "),
+        _c("span", { staticClass: "badge badge-danger navbar-badge" }, [
+          _vm._v(_vm._s(_vm.transaksi.length + _vm.message.length))
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "dropdown-menu dropdown-menu-lg dropdown-menu-right" },
+      [
+        _c(
+          "div",
+          {
+            staticStyle: {
+              padding: "10px",
+              overflow: "scroll",
+              height: "300px"
+            }
+          },
+          [
+            _vm._l(_vm.message, function(msg) {
+              return _c(
+                "a",
+                {
+                  staticClass: "dropdown-item",
+                  attrs: {
+                    href: "/administrator/view-order-lihatpendaki/" + msg.token
+                  }
+                },
+                [
+                  _c("div", { staticClass: "media" }, [
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("h3", { staticClass: "dropdown-item-title" }, [
                         _vm._v(
-                          "\n                                                        Bank: " +
+                          "\n                     Nama Pengirim " +
+                            _vm._s(msg.id_order) +
+                            "\n                     "
+                        ),
+                        _vm._m(0, true)
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-sm" }, [
+                        _vm._v(
+                          "Bank: " +
                             _vm._s(msg.bank) +
-                            " || " +
-                            _vm._s(msg.token) +
-                            "\n                                                      "
+                            " || Token " +
+                            _vm._s(msg.token)
                         )
                       ])
                     ])
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.transaksi, function(trens) {
-                return _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item notify-item active",
-                    attrs: {
-                      href:
-                        "/administrator/view-order-lihatpendaki/" +
-                        trens.token_pendakian
-                    }
-                  },
-                  [
-                    _vm._m(1, true),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "notify-details" }, [
-                      _c("b", [
-                        _vm._v(" Nama Pengirim " + _vm._s(trens.nama_pengirim))
-                      ]),
-                      _c("span", { staticClass: "text-muted" }, [
+                  ])
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.transaksi, function(trens) {
+              return _c(
+                "a",
+                {
+                  staticClass: "dropdown-item",
+                  attrs: {
+                    href:
+                      "/administrator/view-order-lihatpendaki/" +
+                      trens.token_pendakian
+                  }
+                },
+                [
+                  _c("div", { staticClass: "media" }, [
+                    _c("div", { staticClass: "media-body" }, [
+                      _c("h3", { staticClass: "dropdown-item-title" }, [
                         _vm._v(
-                          "\n                                  Token Pendakian " +
+                          "\n                     Nama Pengirim " +
+                            _vm._s(trens.nama_pengirim) +
+                            "\n                     "
+                        ),
+                        _vm._m(1, true)
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-sm" }, [
+                        _vm._v(
+                          "Bank  " +
                             _vm._s(trens.bank) +
-                            " " +
+                            " || Token " +
                             _vm._s(trens.token_pendakian)
                         )
                       ])
                     ])
-                  ]
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _vm._m(2)
-        ]
-      )
-    ]
-  )
+                  ])
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown-divider" }),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "dropdown-item dropdown-footer",
+                attrs: { href: "#" }
+              },
+              [_vm._v("See All Messages")]
+            )
+          ],
+          2
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "notify-icon bg-success" }, [
-      _c("i", { staticClass: "mdi mdi-cart-outline" })
+    return _c("span", { staticClass: "float-right text-sm text-success" }, [
+      _c("i", { staticClass: "fas fa-search-dollar" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "notify-icon bg-success" }, [
-      _c("i", { staticClass: "mdi mdi-cart-outline" })
+    return _c("span", { staticClass: "float-right text-sm text-success" }, [
+      _c("i", { staticClass: "fas fa-search-dollar" })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "dropdown-item text-center notify-all text-primary",
-        attrs: { href: "javascript:void(0);" }
-      },
-      [
-        _vm._v("\n                            View all "),
-        _c("i", { staticClass: "fi-arrow-right" })
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -32122,8 +32106,8 @@ component.options.__file = "resources/js/components/MessageComponentCount.vue"
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Penting dari yg terpenting\Program\boking_prau_skripsi-v1-notiv-berhasil-js\boking_prau_skripsi-v1-notiv-berhasil-vie\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Penting dari yg terpenting\Program\boking_prau_skripsi-v1-notiv-berhasil-js\boking_prau_skripsi-v1-notiv-berhasil-vie\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Penting dari yg terpenting\Program\data_table\boking_prau_skripsi-v2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Penting dari yg terpenting\Program\data_table\boking_prau_skripsi-v2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
