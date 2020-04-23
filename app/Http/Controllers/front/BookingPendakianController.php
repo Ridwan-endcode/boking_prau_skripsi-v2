@@ -46,7 +46,7 @@ class BookingPendakianController extends Controller
             //  print_r($tanggalawl);
             //  die;
             // $relateProduct = Product::where('id', '!=', $id)->where(['category_id' => $productDetails->category_id])->get();
-            $jadwals = Jadwal::where('created_at', '>=', $tanggalawl)->where(['id_jalur' => $jalur_pendakian->id])->orderBy('tgl_jadwal','asc')->paginate(30);
+            $jadwals = Jadwal::where('tgl_jadwal', '>=', $tanggalawl)->where(['id_jalur' => $jalur_pendakian->id])->where(['status' => 1])->orderBy('tgl_jadwal','asc')->paginate(30);
 
 
         }else{

@@ -2,60 +2,82 @@
 
 @section('content')
     
-{{-- 
-        <div class="page-title-box">
-            <div class="row align-items-center">
-                <div class="col-sm-6">
-                    <h4 class="page-title">Dashboard</h4>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-right">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Stexo</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div>
-            </div>
-            <!-- end row -->
-        </div> --}}
 
-        
-{{-- Banner Mulai --}}
-<div>
-    <div class="card m-b-20">
-        <div class="card-body">
-
-            <h4 class="mt-0 header-title text-center">Selamat datang Para Pendaki</h4>
-            <p class="sub-title text-center">Situs Boking Online Gunung Prau Dataran Tinggi dieng jawa tengah</p>
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
-                        <img class="d-block img-fluid mx-auto" src="{{ asset('frontend/images/small/img-3.jpg') }}" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block img-fluid mx-auto" src="{{ asset('frontend/images/small/img-2.jpg') }}" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block img-fluid mx-auto" src="{{ asset('frontend/images/small/img-1.jpg') }}" alt="Third slide">
-                    </div>
+<div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div id="home" class="first-section" style="background-image:url('{{ asset('frontend/images/slider-01.jpg')}}');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-right">
+                                <div class="big-tagline">
+                                    <h2><strong>Gunung Prau </strong> Jawa Tenggah</h2>
+                                    <p class="lead">Situs Booking Online Gunung Prau </p>
+                                    
+                                        <a href="{{ url('/booking-pilih-jalurpendakian') }}" class="hover-btn-new"><span>Mulai Booking Online</span></a>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+            </div><!-- end section -->
         </div>
+        <div class="carousel-item">
+            <div id="home" class="first-section" style="background-image:url('{{ asset('frontend/images/slider-02.jpg')}}');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-left">
+                                <div class="big-tagline">
+                                    <h2 data-animation="animated zoomInRight">Selamat Datang <strong> Pendaki Gunung Prau </strong></h2>
+                                    <p class="lead" data-animation="animated fadeInLeft"> Dataran Tinggi Dieng </p>
+                                    
+                                        <a href="{{ url('/booking-pilih-jalurpendakian') }}" class="hover-btn-new"><span>Mulai Booking Online</span></a>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <div class="carousel-item">
+            <div id="home" class="first-section" style="background-image:url('{{ asset('frontend/images/slider-03.jpg')}}');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="big-tagline">
+                                    <h2 data-animation="animated zoomInRight"><strong>Harap Membaca</strong> Tatacara Booking  </h2>
+                                    <p class="lead" data-animation="animated fadeInLeft">Sistem Booking Online Gunung Prau</p>
+                                        <a href="{{ url('/booking-pilih-jalurpendakian') }}" class="hover-btn-new"><span>Mulai Booking Online</span></a>
+                                       
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <!-- Left Control -->
+        <a class="new-effect carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="fa fa-angle-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <!-- Right Control -->
+        <a class="new-effect carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="fa fa-angle-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-</div> <!-- end col -->
+</div>
 
 
 

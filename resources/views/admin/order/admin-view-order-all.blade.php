@@ -116,9 +116,15 @@
                                     <a class="btn btn-success btn-sm"  href="{{ url('/administrator/view-order-lihatpendaki/'.$order->token_pendakian) }}"data-toggle="tooltip" data-placement="bottom" title="Lihat Data Pendaki"><i class="fas fa-eye"></i> </a>
 
                                 </td>
-                                <td>{{ $order->token_pendakian }}</td>
+                                     <td>{{ $order->token_pendakian }}</td>
                                                       <td> {{ date('j M, Y', strtotime($order->created_at)) }}</td>
-                                                      <td>{{ date('j M, Y', strtotime($order->jadwals->tgl_jadwal)) }}</td>
+                                                        @if (empty($order->jadwals->tgl_jadwal))
+                                                            <td>Data Tidak Ada</td>
+                                                        @else
+                                                            
+                                                        <td>{{ date('j M, Y', strtotime($order->jadwals->tgl_jadwal)) }}</td>
+                                                        @endif
+
                                                       <td>{{ $order->jalur_pendakis->nama_jalur }}</td>
                                                       <td>
                                                     @if ($order->id_transaksi == null)

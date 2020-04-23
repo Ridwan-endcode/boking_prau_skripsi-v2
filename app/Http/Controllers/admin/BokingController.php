@@ -20,8 +20,8 @@ class BokingController extends Controller
 { 
     ini_set('max_execution_time', 300);
 }
-
-    public function viewAllOrder(Request $request){
+ 
+    public function viewAllOrder(){
         $orders = Order::orderBy('id', 'desc')->paginate(15);
         // $orders = Order::all()->paginate(30);
       

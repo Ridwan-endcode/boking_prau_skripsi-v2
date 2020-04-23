@@ -1,96 +1,75 @@
-
-    <div class="header-bg">
-        <!-- Navigation Bar-->
-        <header id="topnav">
-            <div class="topbar-main">
-                <div class="container-fluid">
-
-                    <!-- Logo-->
-                    <div>
-                        <a href="index.html" class="logo">
-                            <span class="logo-light">
-                                    <i class="mdi mdi-camera-control"></i> Booking Online Gunung Prau
-                            </span>
-                        </a>
-                    </div>
-                    <!-- End Logo-->
-
-                    <div class="menu-extras topbar-custom navbar p-0">
-                        <ul class="list-inline d-none d-lg-block mb-0">
-                            <li class="hide-phone app-search float-left">
-                                <form role="search" class="app-search">
-                                    <div class="form-group mb-0">
-                                        <input type="text" class="form-control" placeholder="Search..">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-
-                        <ul class="navbar-right ml-auto list-inline float-right mb-0">
-                           
-
-                            <!-- full screen -->
-                            <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                    <i class="mdi mdi-arrow-expand-all noti-icon"></i>
-                                </a>
-                            </li>
-
-                          
-
-
-                            <li class="menu-item dropdown notification-list list-inline-item">
-                                <!-- Mobile menu toggle-->
-                                <a class="navbar-toggle nav-link">
-                                    <div class="lines">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </a>
-                                <!-- End mobile menu toggle-->
-                            </li>
-
-                        </ul>
-
-                    </div>
-                    <!-- end menu-extras -->
-
-                    <div class="clearfix"></div>
-
-                </div>
-                <!-- end container -->
-            </div>
-            <!-- end topbar-main -->
-
-            <!-- MENU Start -->
-            <div class="navbar-custom">
-                <div class="container-fluid">
-
-                    <div id="navigation">
-
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-
-                            <li class="has-submenu">
-                                <a href="{{ url('/') }}"><i class="icon-accelerator"></i> Dashboard</a>
-                            </li>
-
-                            <li class="has-submenu">
-                                <a href="{{ url('/booking-pilih-jalurpendakian') }}"><i class="icon-accelerator"></i>Boking Online</a>
-                            </li>
-
-                        </ul>
-                        <!-- End navigation menu -->
-                    </div>
-                    <!-- end #navigation -->
-                </div>
-                <!-- end container -->
-            </div>
-            <!-- end navbar-custom -->
-        </header>
-        <!-- End Navigation Bar-->
-
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header tit-up">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Masukan Berdasarkan Token</h4>
+          </div>
+          <div class="modal-body customer-box">
+             
+              <!-- Tab panes -->
+              <div class="tab-content">
+                      <form role="form" class="form-horizontal">
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                  <input class="form-control" placeholder="Masukan Token Anda" id="email1" placeholder="Name" type="text">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-sm-10">
+                                  <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+                                      Submit
+                                  </button>
+                              </div>
+                          </div>
+                      </form>
+                
+              </div>
+          </div>
+      </div>
     </div>
-    <!-- header-bg -->
+  </div>
+
+
+
+  <!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">
+					<img src="{{ asset('frontend/images/logo.png') }}" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/booking-pilih-jalurpendakian') }}">Mulai Booking</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Lihat Peta Jalur </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="#">Jalur Desa Petak Banteng</a>
+								<a class="dropdown-item" href="#">Jalur Dieng Kulon </a>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Mekanisme Booking </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="#">Aturan Booking </a>
+								<a class="dropdown-item" href="#">Alur Booking Online </a>
+							</div>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+                        <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Cek Validasi Booking</span></a></li>
+                    </ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->

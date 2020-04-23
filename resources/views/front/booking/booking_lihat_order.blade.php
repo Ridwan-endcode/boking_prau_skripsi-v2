@@ -2,20 +2,11 @@
 
 @section('content')
     
-<div class="page-title-box">
-        <div class="row align-items-center">
-            <div class="col-sm-6">
-                <h4 class="page-title">Boking Status</h4>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-right">
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-                    <li class="breadcrumb-item active">Lihat Boking</li>
-                </ol>
-            </div>
-        </div>
-        <!-- end row -->
-    </div>
+<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Booking Selesai <br> Token Anda : {{ $orders->token_pendakian }} </h1>
+		</div>
+	</div>
 
     <div class="card-body">
             <div class="">
@@ -38,6 +29,7 @@
             </div>
         </div>
 
+<div class="container">
 
         <div class="col-lg-12">
                 <div class="card m-b-30">
@@ -251,5 +243,7 @@
                     </div>
                 </div>
             </div> <!-- end col -->
+    
+</div>
 @endsection
 

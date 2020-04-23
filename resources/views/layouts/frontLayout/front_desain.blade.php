@@ -11,22 +11,37 @@
         tulisan=tulisan.substring(1,tulisan.length)+tulisan.charAt(0);
         fress=setTimeout("jalan()",kecepatan);}jalan();
         </script>
-    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <link rel="shortcut icon" href="{{ asset('frontend/images/favicon.ico') }}">
+   <!-- Basic -->
+   
+  
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="{{ asset('/plugins/morris/morris.css') }}">
+    <!-- Site Metas -->
+   <meta name="Booking Gunung Prau" content="">
 
-    <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('frontend/css/metismenu.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('frontend/css/icons.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet" type="text/css">
+   <!-- Site Icons -->
+   <link rel="shortcut icon" href="{{ asset('frontend/images/favicon.ico') }}" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="{{ asset('frontend/images/apple-touch-icon.png') }}">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
+   <!-- Site CSS -->
+   <link rel="stylesheet" href="{{ asset('frontend/style.css') }}">
+   <!-- ALL VERSION CSS -->
+   <link rel="stylesheet" href="{{ asset('frontend/css/versions.css') }}">
+   <!-- Responsive CSS -->
+   <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+
+   <!-- Modernizer for Portfolio -->
+   <script src="{{ asset('frontend/js/modernizer.js') }}"></script>
 
     @yield('app_css')
 
     <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -36,45 +51,32 @@
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
-    </script>
+    </script> --}}
     <!--End of Tawk.to Script-->
 
 
 </head>
 
-<body style="background: radial-gradient(#cce6ff, #FFF);" >
+<body class="host_version"> 
 
     @include('layouts.frontLayout.front_heder')
 
-    <div class="wrapper">
-        <div class="container-fluid">
-            <!-- Page-Title -->
-
     @yield('content')
 
-    
-</div>
-<!-- end container-fluid -->
-</div>
-<!-- end wrapper -->
-
-
     @include('layouts.frontLayout.front_footer')
-
-    <!-- jQuery  -->
-    <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery.slimscroll.js') }}"></script>
-    <script src="{{ asset('frontend/js/waves.min.js') }}"></script>
-
-    <!--Morris Chart-->
-    <script src="{{ asset('/plugins/morris/morris.min.js') }}"></script>
-    <script src="{{ asset('/plugins/raphael/raphael.min.js') }}"></script>
-
-    <script src="{{ asset('frontend/pages/dashboard.init.js') }}"></script>
-
-    <!-- App js -->
-    <script src="{{ asset('frontend/js/app.js') }}"></script>
+    <!-- ALL JS FILES -->
+    <script src="{{ asset('frontend/js/all.js') }}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{{ asset('frontend/js/custom.js') }}"></script>
+    <script src="{{ asset('frontend/js/timeline.min.js') }}"></script>
+    <script>
+        timeline(document.querySelectorAll('.timeline'), {
+            forceVerticalMode: 700,
+            mode: 'horizontal',
+            verticalStartPosition: 'left',
+            visibleItems: 4
+        });
+    </script>
 
     @yield('app_js')
 

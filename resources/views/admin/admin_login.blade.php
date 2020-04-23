@@ -24,7 +24,8 @@
     
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <img src="{{ asset('frontend/images/logo.png') }}" alt="">
+    <a href="#"><b>Admin</b> Prau</a>
   </div>
 
  
