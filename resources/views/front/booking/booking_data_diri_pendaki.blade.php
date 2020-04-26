@@ -85,7 +85,7 @@ use App\Pendaki;
                             <dd class="col-sm-7">: {{ $orders->pendakis->nama }}</dd>
 
                             <dt class="col-sm-5">Tanggal Lahir</dt>
-                            <dd class="col-sm-7">: {{ $orders->pendakis->tgl_lahir }}</dd>
+                            <dd class="col-sm-7">: {{ date('j M, Y', strtotime($orders->pendakis->tgl_lahir)) }}</dd>
 
                             <dt class="col-sm-5">Jenis Kelamin</dt>
                             <dd class="col-sm-7">: {{ $orders->pendakis->jenis_kelamin }}</dd>
@@ -261,7 +261,7 @@ use App\Pendaki;
               <form class="" method="post" action="{{ url('/booking-add-order-anggota-edit/'.$pendaki->id) }}" enctype="multipart/form-data" > @csrf
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           
-                <div class="modal-content section-title text-center">
+                <div class="modal-content section-title">
                     <div class="modal-header">
 
                         <h5 class="modal-title mt-0" id="myLargeModalLabel">Isi Data Anggota Kelompok</h5>
@@ -293,16 +293,42 @@ use App\Pendaki;
                          <input class="form-control" required value="{{ $pendaki->tgl_lahir }}" type="text" name="tgl_lahir" id="example-text-input">
                        </div>
                      </div>
+
+
+                     <div class="form-group">
+                      <label class="col-form-label">Jenis Kelamin</label>
+                      <div class="form-check">
+                          <input class="form-check-input" name="jenis_kelamin" type="radio"@if ($pendaki->jenis_kelamin == "laki-laki" )
+                          checked
+                          @endif
+                          value="laki-laki"
+                            id="exampleRadios1" >
+                          <label class="form-check-label" for="exampleRadios1">
+                              laki-laki
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" name="jenis_kelamin" type="radio" 
+                          @if ($pendaki->jenis_kelamin == "Perempuan" )
+                          checked
+                          @endif
+                          value="Perempuan" 
+                           id="exampleRadios2" >
+                          <label class="form-check-label" for="exampleRadios2">
+                              Perempuan
+                          </label>
+                        </div>
+                    </div>
                       
                    
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                          <label class="col-form-label">Jenis Kelamin</label>
                            <select class="form-control" required name="jenis_kelamin">
                              <option selected value="{{ $pendaki->jenis_kelamin }}">{{ $pendaki->jenis_kelamin }}</option>
                              <option value="Pria">Pria</option>
                              <option value="Wanita">Wanita</option>
                            </select>
-                       </div>
+                       </div> --}}
   
                        <div class="form-group">
                          <label for="example-text-input" class="col-form-label">Jenis Identitas</label>
@@ -402,11 +428,12 @@ use App\Pendaki;
                         <h5><span class="badge badge-info">Lengkapi Form Anggota Kelompok</span></h4>
                        </div>
 
-                                                         <div class="col-lg-6">
+                    <div class="col-lg-6">
                         <div class="form-group">
                           <label for="example-text-input" class="col-form-label">Nama Anggota Kelompok</label>
                           <div>
-                                <input class="form-control" type="text" required name="nama" id="example-text-input" >
+                              <input class="form-control @error('nama') is-invalid @enderror"  type="text" name="nama" value="{{ old('nama') }}" id="example-text-input" >
+                              @error('nama') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                           </div>
                         </div>
 
@@ -418,83 +445,106 @@ use App\Pendaki;
                         <div class="form-group">
                           <label for="example-text-input" class="col-form-label">Tanggal Lahir</label>
                           <div>
-                            <input class="form-control" required type="date" name="tgl_lahir" id="example-text-input">
+                              <input class="form-control @error('tgl_lahir') is-invalid @enderror"  type="date" name="tgl_lahir" id="example-text-input" value="{{ old('tgl_lahir') }}">
+                              @error('tgl_lahir') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                           </div>
                         </div>
                          
                       
-                           <div class="form-group">
+                        <div class="form-group">
                             <label class="col-form-label">Jenis Kelamin</label>
-                              <select class="form-control" required name="jenis_kelamin">
-                                <option>Select</option>
-                                <option value="Pria">Pria</option>
-                                <option value="Wanita">Wanita</option>
-                              </select>
+                            <div class="form-group">
+                             <div class="custom-control custom-radio ">
+                               <input class="custom-control-input @error('jenis_kelamin') is-invalid @enderror"
+                              value="laki-laki" @if(old('jenis_kelamin') == 'laki-laki') checked @endif
+                               type="radio" id="customRadio1" name="jenis_kelamin">
+                               <label for="customRadio1" class="custom-control-label">Laki-Laki</label>
+                             </div>
+                             <div class="custom-control custom-radio">
+                               <input class="custom-control-input @error('jenis_kelamin') is-invalid @enderror" type="radio" 
+                               value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') checked @endif
+                               id="customRadio2" name="jenis_kelamin">
+                               <label for="customRadio2" class="custom-control-label">Perempuan</label>
+                             </div>
+                             @error('jenis_kelamin') <div class="invalid-feedback" >{{ $message }}</div> @enderror
+                           </div>
                           </div>
      
                           <div class="form-group">
-                            <label for="example-text-input" class="col-form-label">Jenis Identitas</label>
-                            <div>
-                                  <input class="form-control" type="text" required name="janis_identitas" id="example-text-input" >
+                              <label class="col-form-label">Jenis Identitas</label>
+                                <select class="form-control @error('janis_identitas') is-invalid @enderror" required name="janis_identitas">
+                                  <option value="">Pilih identitas</option>
+                                  <option value="KTP" @if(old('janis_identitas') == 'KTP')selected @endif>KTP</option>
+                                  <option value="SIM" @if(old('janis_identitas') == 'SIM')selected @endif>SIM</option>
+                                  <option value="KTP" @if(old('janis_identitas') == 'KARTU PELAJAR')selected @endif>Kartu Pelajar</option>
+                                </select>
+                                @error('janis_identitas') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                             </div>
-                          </div>
  
-                          <div class="form-group">
-                            <label for="example-text-input" class="col-form-label">Nomer Identitas</label>
-                            <div>
-                              <input class="form-control" required type="text" name="no_identitas" id="example-text-input">
-                            </div>
-                          </div>
+                            <div class="form-group">
+                                <label for="example-text-input" class="col-form-label">Nomer Identitas</label>
+                                <div>
+                                  <input class="form-control @error('no_identitas') is-invalid @enderror" required type="text" name="no_identitas" id="example-text-input" value="{{ old('no_identitas') }}">
+                                  @error('no_identitas') <div class="invalid-feedback" >{{ $message }}</div> @enderror
+                                </div>
+                              </div>
     
                           <div class="form-group">
                             <label for="example-text-input" class="col-form-label">Upload Foto Identitas</label>
                             <div>
-                              <input class="form-control" required type="file" name="image_identitas" id="example-text-input">
+                                <input class="form-control @error('image_identitas') is-invalid @enderror" required type="file" name="image_identitas" id="example-text-input" value="{{ old('image_identitas') }}">
+                                <div class="form-control-feedback">File Harus di bawah 2 MB || Format file JPG/PNG</div>
+                                @error('image_identitas') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                             </div>
                           </div>
-                                                           </div>
+                         </div>
 
-                                                             <div class="col-lg-6">
+                       <div class="col-lg-6">
                           <div class="form-group">
-                            <label for="example-text-input" class="col-form-label">Alamat</label>
-                            <div>
-                              <input class="form-control" required type="text" name="alamat" id="example-text-input">
-                            </div>
-                          </div>
+                              <label for="example-text-input" class="col-form-label">Alamat</label>
+                              <div>
+                                <input class="form-control @error('alamat') is-invalid @enderror" required type="text" name="alamat" id="example-text-input" value="{{ old('alamat') }}" >
+                                @error('alamat') <div class="invalid-feedback" >{{ $message }}</div> @enderror
+                              </div>
+                             </div>
                           
                           <div class="form-group">
                              <label for="example-text-input" class="col-form-label">Kota Asal</label>
                               <div>
-                                <input class="form-control" required type="text" name="kota_asal" id="example-text-input">
+                                  <input class="form-control @error('kota_asal') is-invalid @enderror" required type="text" name="kota_asal" id="example-text-input" value="{{ old('kota_asal') }}">
+                                  @error('kota_asal') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                               </div>
                            </div>
+
                            <div class="form-group has-success">
                              <label for="inputHorizontalSuccess" class="col-form-label">Email</label>
                              <div>
-                               <input type="email" class="form-control form-control-success" name="email" required id="inputHorizontalSuccess" placeholder="name@example.com">
-                               <div class="form-control-feedback">Email Harus Aktiv untuk mengirimkan Token Booking.</div>
-                               <small class="form-text text-muted">Example help text that remains unchanged.</small>
+                                        <input type="email" class="form-control form-control-success @error('email') is-invalid @enderror" required name="email" id="inputHorizontalSuccess" value="{{ old('email') }}" placeholder="name@example.com">
+                                        <div class="form-control-feedback">Email Harus Aktiv untuk mengirimkan Token Booking.</div>
+                                  @error('email') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                              </div>
                            </div>
                            <div class="form-group">
                              <label for="example-text-input" class="col-form-label">No Hp</label>
                               <div>
-                                <input class="form-control" required type="text" name="no_hp" id="example-text-input">
+                               <input class="form-control @error('no_hp') is-invalid @enderror" required type="text" name="no_hp" id="example-text-input" value="{{ old('no_hp') }}">
+                             @error('no_hp') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                               </div>
                            </div>
 
                            <div class="form-group">
                              <label for="example-text-input" class="col-form-label">No Hp Lain</label>
                               <div>
-                                <input class="form-control" required type="text" name="no_hp_lain" id="example-text-input">
+                                  <input class="form-control @error('no_hp_lain') is-invalid @enderror" required type="text" name="no_hp_lain" id="example-text-input" value="{{ old('no_hp_lain') }}">
+                                  @error('no_hp_lain') <div class="invalid-feedback" >{{ $message }}</div> @enderror
                               </div>
                            </div>
                           
-                                                     </div>
+                        </div>
                    </div>
                    
-                   <div class="button-items">
-                       <button type="submit" class="btn btn-primary btn-lg btn-block waves-effect waves-light">Selesai Lanjutkan Boking</button></div>
+                        <div class="button-items">
+                       <button type="submit" class="btn btn-primary btn-lg btn-block waves-effect waves-light">Tambah Anggota</button></div>
                        </div>
             
 

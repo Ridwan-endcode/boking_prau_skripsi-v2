@@ -146,14 +146,14 @@ class BokingController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $orders = Order::where(['token_pendakian'=>$token])->first();
 
-        $updated_at = date("Y-m-d h:i:sa");
+        $updated_at = date("Y-m-d h:i:s");
 
         if (date('j M, Y', strtotime($orders->jadwals->tgl_jadwal)) != date('j M, Y') ) {
            return redirect()->back()->with('flash_message_error', '|| Jaldwal Pendkian Tidak sesuai denga Tanggal saat ini');
         }
 
         // $id_user = auth()->user()->id;
-        Order::where(['id' => $orders->id])->update(['status_pendaki_datang	' => '1']);
+        Order::where(['id' => $orders->id])->update(['status_pendaki_datang' => '1']);
            return redirect()->back()->with('flash_message_success', '|| Absen Pendaki Datang Berhasil');
     }
 }

@@ -92,6 +92,23 @@ class BookingPendakianController extends Controller
         // print_r($data);
         // die;
 
+        $this->validate($request, [
+            'nama' => 'required',
+            'nama_kelompok' => 'required',
+            'tgl_turun' => 'required',
+            'tgl_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'id_jadwal' => 'required',
+            'janis_identitas' => 'required',
+            'alamat' => 'required',
+            'no_identitas' => 'required',
+            'kota_asal' => 'required',
+            'email' => 'required|email',
+            'no_hp' => 'required',
+            'no_hp_lain' => 'required',
+            'image_identitas' => 'required|image|max:1999',
+        ]);
+
         
 
             $data = $request->all(); 
@@ -147,6 +164,9 @@ class BookingPendakianController extends Controller
                 $orders->session_id = $session_id;
                 $orders->nama_kelompok = $data['nama_kelompok'];
                 $orders->id_pendaki = $id_pendaki;
+                $orders->kadaluarsa = date('Y-m-d h:i:s', strtotime("+1 day", strtotime(date("Y-m-d h:i:s"))));
+
+                
 
                 $orders -> save();
 
@@ -182,11 +202,17 @@ class BookingPendakianController extends Controller
 
     public function AddDataDiriPendakian(Request $request , $id = null){
 
+        // $session_id = Session::get('session_id');
+        // $orders = Order::where(['id'=>$id])->first();
         $session_id = Session::get('session_id');
+        
 
         $orders = Order::find($id);
         if (!empty($orders->selesi_order)) {
             return redirect('/booking-pilih-jalurpendakian')->with('flash_message_success', 'Anda Telah selesaikan Boking Silahkan Cek Validasi Anda');
+        }
+        if ( $session_id != $orders->session_id ) {
+            return redirect('/booking-pilih-jalurpendakian')->with('flash_message_error', 'Sesi Anda tidak valid untuk Booking Pendaki ini');
         }
 
 
@@ -202,6 +228,24 @@ class BookingPendakianController extends Controller
     }
 
     public function AddOrderAnggota(Request $request){
+        
+        $this->validate($request, [
+            'nama' => 'required',
+            'tgl_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'id_jadwal' => 'required',
+            'janis_identitas' => 'required',
+            'alamat' => 'required',
+            'no_identitas' => 'required',
+            'kota_asal' => 'required',
+            'email' => 'required|email',
+            'no_hp' => 'required',
+            'no_hp_lain' => 'required',
+            'image_identitas' => 'required|image|max:1999',
+        ]);
+
+        
+
         $data = $request->all(); 
 
        

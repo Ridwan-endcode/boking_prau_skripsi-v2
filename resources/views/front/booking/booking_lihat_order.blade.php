@@ -39,6 +39,9 @@
                         <div class="col-lg-6">
 
                             <h4 class="mt-0 header-title">Booking Status</h4>
+                            <?php echo date('Y-m-d h:i:sa', strtotime("+1 day", strtotime(date("Y-m-d h:i:sa")))); ?> 
+                            <?php echo date('Y-m-d h:i:sa'); ?> 
+
                             <div class="col-xl-12">
                                     <div class="card m-b-30 text-white bg-info">
                                         <div class="card-body">
@@ -57,23 +60,37 @@
                             <blockquote class="blockquote font-16">
                               
                                 <dl class="row mb-0">
-                                    @if ($orders->id_transaksi == null)
-                                    <dt class="col-sm-5">Status Boking</dt>
-                                    <dd class="col-sm-7">:  
-                                            <span class="badge badge-warning">Pengajuan</span> 
-                                            <p>
-                                                Silahkan Lakukan Konfirmasi Pembayaran Untuk merubah status
-                                            </p>
-                                     </dd>
-                                     @elseif(!empty($orders->status_bayar))
-                                     <dt class="col-sm-4">Status Boking</dt>
-                                     <dd class="col-sm-8"> <span class="badge badge-success">Booking DiSetujui</span></dd>
-                                     @else
-                                     <dt class="col-sm-4">Status Boking</dt>
-                                     <dd class="col-sm-8"> <span class="badge badge-warning">Menunggu Konfirasi Pembayaran</span></dd>
-                                   
-                                    
+                                    @if (date('Y-m-d h:i:s') <= $orders->kadaluarsa)
+                                        @if ($orders->id_transaksi == null)
+                                        <dt class="col-sm-5">Status Boking</dt>
+                                        <dd class="col-sm-7">:  
+                                                <span class="badge badge-warning">Pengajuan</span> 
+                                                <p>
+                                                    Silahkan Lakukan Konfirmasi Pembayaran Untuk merubah status
+                                                </p>
+                                        </dd>
+                                        @elseif(!empty($orders->status_bayar))
+                                        <dt class="col-sm-4">Status Boking</dt>
+                                        <dd class="col-sm-8"> <span class="badge badge-success">Booking DiSetujui</span></dd>
+                                        @else
+                                        <dt class="col-sm-4">Status Boking</dt>
+                                        <dd class="col-sm-8"> <span class="badge badge-warning">Menunggu Konfirasi Pembayaran</span></dd>
+                                      
+                                        @endif
+                                        @elseif(!empty($orders->status_bayar))
+                                        <dt class="col-sm-4">Status Boking</dt>
+                                        <dd class="col-sm-8"> <span class="badge badge-success">Booking DiSetujui</span></dd>
+                                    @elseif(!empty($orders->id_transaksi))
+                                      <dt class="col-sm-4">Status Boking</dt>
+                                      <dd class="col-sm-8"> <span class="badge badge-warning">Menunggu Konfirasi Pembayaran</span></dd>
+                                      
+                                       
+                                    @else
+                                        Booking anda di batalkan karna lebih dari wakti pembayran
                                     @endif
+                                    
+
+
                           
                                     <dt class="col-sm-5">Jadwal Pendakian</dt>
                                     <dd class="col-sm-7">: {{ $orders->jadwals->tgl_jadwal }}</dd>
